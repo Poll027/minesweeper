@@ -269,3 +269,12 @@ project description.
 - **Why:** Folajuwon asked "fix 1 and 2"; `.github/` is outside the detector/training rule.
 - **State after:** Not yet run on GitHub (needs a PR to test). Still open: log-injection from
   echoing PR text, exact-phrase matching limits.
+
+## 2026-11-17 — venv, git init, README
+- **What:** Folajuwon created `.venv` (python3 -m venv) and ran `git init` with remote
+  `origin` = github.com/Poll027/minesweeper (branch renamed main; first commit/push pending).
+  Claude added a short `README.md` (purpose, status, layout, setup, data-privacy note).
+- **Why:** Folajuwon asked for a venv command, then help with git errors (no repo yet; no commit
+  yet), then "add a small readme". README is outside detector/training, so Claude wrote it.
+- **State after:** `.gitignore` exists (Claude has not inspected its contents; should cover `.venv/`
+  and `training/data/raw/github_negatives/`). Nothing pushed yet. No requirements.txt (stdlib only).
