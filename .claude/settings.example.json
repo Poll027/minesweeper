@@ -1,0 +1,28 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -m detector.main",
+            "env": { "INPUT_CONTENT-TYPE": "tool_call" }
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "mcp__.*__(fetch|search|get_.*)",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 -m detector.main",
+            "env": { "INPUT_CONTENT-TYPE": "tool_output" }
+          }
+        ]
+      }
+    ]
+  }
+}

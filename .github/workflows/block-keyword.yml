@@ -1,0 +1,22 @@
+name: Block Keyword Check
+
+on: 
+    pull_request:
+        types: [opened, edited, synchronize]
+
+jobs:
+    checck-content:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Check PR title and body for banned phrase
+              env:
+                  PR_TITLE: ${{ github.event.pull_request.title }}
+                  PR_BODY: ${{ github.event.pull_request.body }}
+              run: |
+                  echo "Title: $PR_TITLE"
+                  echo "Body: $PR_BODY"
+                  if echo "$PR_TITLE $PR_BODY" | grep -qi "ignore previous instructions"; then
+                      echo "::error::Banned phrase detected in PR content."
+                      exit 1
+                  fi
+                  echo "No banned phrase found. Passing."
